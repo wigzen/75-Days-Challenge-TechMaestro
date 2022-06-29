@@ -2,35 +2,22 @@
 
 class Solution:
     def getPairsCount(self, arr, n, sum):
-        
-        m = dict()
- 
-        # Store counts of all elements in map m
+        t_count=0
+        m =dict()
         for i in range(n):
-            if arr[i] in m.keys():
-                m[arr[i]] += 1
+            if arr[i] not in m:
+                m[arr[i]]=1
             else:
-                m[arr[i]] = 1
- 
-        twice_count = 0
- 
-        # Iterate through each element and increment
-        # the count (Notice that every pair is
-        # counted twice)
-        for i in range(0, n):
-            if (sum-arr[i]) in m.keys():
-                twice_count += m[sum - arr[i]]
- 
-            # if (arr[i], arr[i]) pair satisfies the
-            # condition, then we need to ensure that
-            # the count is  decreased by one such
-            # that the (arr[i], arr[i]) pair is not
-            # considered
-            if (sum - arr[i] == arr[i]):
-                twice_count -= 1
- 
-        # return the half of twice_count
-        return twice_count//2
+                m[arr[i]]+=1
+        # print(m)
+        for j in range(n):
+            b =sum-arr[j]
+            if b in m.keys():
+                t_count +=m[b]
+            if sum-arr[j]==arr[j]:
+                t_count-=1
+
+        return t_count//2
 #{ 
 #  Driver Code Starts
 #Initial Template for Python 3
