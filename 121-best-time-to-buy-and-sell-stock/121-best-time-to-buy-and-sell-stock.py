@@ -1,12 +1,8 @@
-import sys
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        profit = 0
-        min =sys.maxsize
-        if len(prices)==0: return 0
-        for i in prices:
-            if min>i:
-                min =i
-            elif profit<i-min:
-                profit = i-min
+    def maxProfit(self, arr: List[int]) -> int:
+        mini = float("inf")
+        profit =0
+        for i in range(len(arr)):
+            mini =min(mini,arr[i])
+            profit =max(profit,arr[i]-mini)
         return profit
